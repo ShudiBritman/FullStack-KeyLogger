@@ -6,9 +6,4 @@ class Encryption:
     def decrypt(self, data: str):
         return self.encrypt(data)
 
-my_cryption = Encryption(5)
-encryption = my_cryption.encrypt("Hello world")
-print(encryption)
-encryption = my_cryption.decrypt(encryption)
-print(encryption)
 
