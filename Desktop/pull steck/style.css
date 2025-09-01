@@ -1,0 +1,137 @@
+/* רקע הדף */
+body {
+    background-image: url('3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.85); /* רקע בהיר מעל התמונה */
+    background-blend-mode: lighten;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* כותרות */
+h1 {
+    color: rgb(15, 18, 26);
+    font-size: 70px;
+    margin: 30px 0 10px 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* צל עדין לכותרת */
+}
+
+h3 {
+    color: rgb(0, 0, 0);
+    font-size: 42px;
+    margin: 10px 0 30px 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+/* פסקאות */
+p {
+    color: rgb(0, 0, 0);
+    font-size: 28px;
+    text-align: center;
+    background-color: rgb(20, 243, 187);
+    display: inline-block;
+    max-width: 850px;
+    margin: 25px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* צל לפסקאות */
+    line-height: 1.6;
+}
+
+/* רשימה */
+ul {
+    background-color: rgba(20, 243, 187);
+    display: inline-block;
+    padding: 20px 25px;
+    margin: 25px auto;
+    text-align: right;
+    direction: rtl;
+    list-style-position: inside;
+    font-size: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* קישורים */
+ul a {
+    color: rgb(15, 18, 26);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+ul a:hover {
+    text-decoration: underline;
+}
+
+/* תמונות */
+img {
+    max-width: 700px;
+    width: 90%;
+    height: auto;
+    margin: 15px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25); /* צל לתמונות */
+    transition: transform 0.3s;
+}
+
+img:hover {
+    transform: scale(1.05); /* אפקט הקטנה/גדילה על ריחוף */
+}
+
+/* figure */
+figure {
+    margin: 30px auto;
+    text-align: center;
+}
+
+/* figcaption */
+figcaption {
+    font-size: 18px;
+    color: rgb(50, 50, 50);
+    margin-top: 10px;
+    font-style: italic;}
+
+#button1 {
+    background-color: rgb(20, 243, 187); /* כחול יפה */
+    color: white;              /* טקסט לבן */
+    border: none;              /* ללא גבול */
+    border-radius: 8px;        /* פינות מעוגלות */
+    padding: 10px 20px;        /* גודל הכפתור */
+    font-size: 18px;           /* גודל טקסט */
+    cursor: pointer;           /* מצביע עכבר משתנה כשעוברים על הכפתור */
+    transition: 0.3s;          /* אפקט חלק לשינויים */
+}
+
+/* אפקט כשעוברים עם העכבר */
+#button1:hover {
+    background-color: #1c86ee; /* כחול כהה יותר */
+}
+
+/* אפקט בלחיצה */
+#button1:active {
+    transform: scale(0.97);    /* מעט קטן בלחיצה */
+}    
+/* עיצוב תיבת הקלט */
+#input_serch {
+    padding: 10px 15px;        /* מרווח פנימי */
+    font-size: 16px;           /* גודל הטקסט */
+    border: 2px solid #ccc;    /* גבול אפור בהיר */
+    border-radius: 8px;        /* פינות מעוגלות */
+    outline: none;             /* מסיר את הקו הכחול שמופיע בלחיצה */
+    transition: 0.3s;          /* אפקט חלק לשינויים */
+    width: 200px;              /* רוחב קבוע */
+}
+
+/* אפקט כשעוברים עם העכבר */
+#input_serch:hover {
+    border-color: #1e90ff;     /* גבול כחול בהיר */
+}
+
+/* אפקט כשמקלידים בתוך השדה (focus) */
+#input_serch:focus {
+    border-color: #1e90ff;     /* גבול כחול */
+    box-shadow: 0 0 5px #1e90ff; /* הצללה קלה */
+}
