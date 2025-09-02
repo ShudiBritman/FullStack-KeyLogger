@@ -1,5 +1,6 @@
 class Encryption:
-    def __init__(self, key):
+    def __init__(self, key="IDF"):
+        self.my_key = key
         key = str(key)
         self.key = [ord(c) for c in key]
     def encrypt(self, data):
@@ -8,7 +9,6 @@ class Encryption:
     def decrypt(self, data):
         data = str(data)
         return self.encrypt(data)
-
 
 
 
