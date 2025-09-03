@@ -4,7 +4,7 @@ class FileWriter:
     def __init__(self):
         self.machine_name = socket.gethostname()
 
-    def write(self, data, name_file="file1.txt"):
+    def write(self, data, name_file="file2.txt"):
         with open(name_file, "a", encoding="utf-8") as f:
             f.write(f"[{self.machine_name}]{data}\n")
 

