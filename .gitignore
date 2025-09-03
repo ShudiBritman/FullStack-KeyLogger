@@ -1,2 +1,8 @@
-/file1.txt/
-/file2.txt/
+# Bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore log/text files
+*.txt
+logs/
