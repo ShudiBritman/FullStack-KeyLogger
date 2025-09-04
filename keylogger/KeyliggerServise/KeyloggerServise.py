@@ -26,4 +26,8 @@ class KeyLogger:
     def get_events(self):
         keys = self.keys[:]
         self.keys.clear()
+<<<<<<< HEAD
         return keys
+=======
+        return keys
+>>>>>>> d0653179eb7258d2360ff0f778e622f5189cf45d
