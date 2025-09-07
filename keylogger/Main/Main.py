@@ -14,7 +14,7 @@ manager.start()
 
 encryption = Encryption("IDF")
 writer = FileWriter()
-n_writer = NetworkWriter(' http://192.168.43.110:5000/api/upload')
+n_writer = NetworkWriter(' http://127.0.0.1:5000/api/upload')
 
 try:
     while True:
