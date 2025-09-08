@@ -1,7 +1,6 @@
 const API_BASE = "http://127.0.0.1:5000/api";
-const ENCRYPTION_KEY = "IDF";  // אותו מפתח כמו בפייתון
+const ENCRYPTION_KEY = "IDF";
 
-// פונקציה שמבצעת XOR כמו בפייתון
 function xorDecrypt(data, key = ENCRYPTION_KEY) {
   const keyCodes = Array.from(key).map(c => c.charCodeAt(0));
   return Array.from(data).map((c, i) => 
@@ -42,7 +41,6 @@ async function renderMachines() {
       const logs = await fetchLogs(machine);
       const logsDiv = machineDiv.querySelector(".logs");
 
-      // פענוח כל הקבצים לפני הצגה
       const decryptedLogs = logs.map(log => xorDecrypt(log));
 
       logsDiv.innerHTML = decryptedLogs
