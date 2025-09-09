@@ -34,13 +34,13 @@ def upload():
         filename = generate_log_filename()
         file_path = os.path.join(machine_folder, filename)
         with open(file_path, "w", encoding="utf-8") as f:
-            f.write(log_data + "\n")
+            f.write(log_data)
         last_log_info[machine] = {"time": now, "file": file_path}
         return jsonify({"status": "new_file", "file": file_path}), 200
     else:
         file_path = info["file"]
         with open(file_path, "a", encoding="utf-8") as f:
-            f.write(log_data + "\n")
+            f.write(log_data)
 
         return jsonify({"status": "appended", "file": file_path}), 200
 
