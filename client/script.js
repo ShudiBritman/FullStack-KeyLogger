@@ -1,11 +1,15 @@
 const API_BASE = "http://127.0.0.1:5000/api";
 const ENCRYPTION_KEY = "IDF";
 
+function getSingleKey(key) {
+  return Array.from(key).reduce((sum, c) => sum + c.charCodeAt(0), 0);
+}
+
 function xorDecrypt(data, key = ENCRYPTION_KEY) {
-  const keyCodes = Array.from(key).map(c => c.charCodeAt(0));
-  return Array.from(data).map((c, i) => 
-    String.fromCharCode(c.charCodeAt(0) ^ keyCodes[i % keyCodes.length])
-  ).join("");
+  const singleKey = getSingleKey(key);
+  return Array.from(data)
+    .map(c => String.fromCharCode(c.charCodeAt(0) ^ singleKey))
+    .join("");
 }
 
 async function fetchMachines() {
